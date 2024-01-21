@@ -1,26 +1,40 @@
 public class Person {
+    private String name;
+    private int age;
 
-    String FullName;
-
-    int age;
-
-    public Person(String FullName, int age) {
-        this.FullName = FullName;
+    public Person(String name, int age) {
+        this.name = name;
         this.age = age;
     }
-    public static void main(String[] args) {
-        Person pr1 = new Person("Ronaldo",39);
-        Person pr2 = new Person("Messi",35);
-        pr1.move("Ronaldo", 39);
-        pr2.move("Messi", 35);
-        pr1.talk("Ronaldo", 39);
-        pr2.talk("Messi", 35);
+    public class Student extends Person {
+        private int studentID;
+        public Student(String name, int age, int studentID) {
+            super(name, age);
+            this.studentID = studentID;
+        }
+
+        public int getStudentID() {
+            return studentID;
+        }
 
     }
-    public void move(String FullName, int age) {
-        System.out.println(FullName + " " + age + " years old is moving");
+    public void callName() {
+        System.out.println("Name: " + name);
     }
-    public void talk(String FullName, int age) {
-        System.out.println(FullName + " " + age + " years old is talking");
+    public void callAge() {
+        System.out.println("Age: " + age);
+    }
+    public void callID() {
+
+        Student student1 = new Student("Damir", 18, 230554);
+        System.out.println("Student ID: " + student1.getStudentID());
+    }
+    public static void main(String[] args) {
+        Person person1 = new Person("Damir", 18);
+
+        Student student1 = person1.new Student("Damir", 18, 230554);
+        student1.callName();
+        student1.callAge();
+        student1.callID();
     }
 }
