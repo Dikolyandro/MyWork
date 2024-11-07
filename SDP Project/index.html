@@ -1,25 +1,419 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Футбольная Викторина</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Quiz with Design Patterns</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <h1>Football Quiz</h1>
+
+    <!-- Основной экран  -->
     <div id="quiz-container">
-        <div id="question-container">
-            <div id="question"></div>
-            <div id="options"></div>
-        </div>
-        <button id="next-button">Следующий вопрос</button>
-        <div id="result-container" class="hidden">
-            <div id="result"></div>
-            <button id="restart-button">Начать заново</button>
-        </div>
+        <div class="question" id="question"></div>
+        <div class="answers" id="answers"></div>
+        <div class="score" id="score">Score: 0</div>
+        <button id="next-question" style="display: none;">Следюущий вопрос</button>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Конечный экран -->
+    <div id="end-screen" style="display: none;">
+        <h2 id="final-score"></h2>
+        <p id="feedback"></p>
+        <button id="restart-quiz">Пройти квиз снова</button>
+    </div>
+
+    <script>
+        const questions = [{
+            question: "Кто выиграл чемпионат мира по футболу 2018?",
+            answers: [{
+                text: "Германия",
+                correct: false
+            }, {
+                text: "Франция",
+                correct: true
+            }, {
+                text: "Аргентина",
+                correct: false
+            }, {
+                text: "Бразилия",
+                correct: false
+            }]
+        }, {
+            question: "Какое прозвище у сборной Бразилии?",
+            answers: [{
+                text: "Красные",
+                correct: false
+            }, {
+                text: "Канарейки",
+                correct: true
+            }, {
+                text: "Синие",
+                correct: false
+            }, {
+                text: "Львы",
+                correct: false
+            }]
+        }, {
+            question: "Кто является лучшим бомбардиром в истории Лиги чемпионов?",
+            answers: [{
+                text: "Лионель Месси",
+                correct: false
+            }, {
+                text: "Криштиану Роналду",
+                correct: true
+            }, {
+                text: "Роберт Левандовски",
+                correct: false
+            }, {
+                text: "Златан Ибрагимович",
+                correct: false
+            }]
+        }, {
+            question: "Какой клуб выиграл Лигу чемпионов в 2020 году?",
+            answers: [{
+                text: "Бавария",
+                correct: true
+            }, {
+                text: "ПСЖ",
+                correct: false
+            }, {
+                text: "Барселона",
+                correct: false
+            }, {
+                text: "Реал Мадрид",
+                correct: false
+            }]
+        }, {
+            question: "Кто является лучшим бомбардиром в истории сборной Аргентины?",
+            answers: [{
+                text: "Габриэль Батистута",
+                correct: false
+            }, {
+                text: "Серхио Агуэро",
+                correct: false
+            }, {
+                text: "Лионель Месси",
+                correct: true
+            }, {
+                text: "Диего Марадона",
+                correct: false
+            }]
+        }, {
+            question: "Какой клуб носит прозвище 'красные дьяволы'?",
+            answers: [{
+                text: "Ливерпуль",
+                correct: false
+            }, {
+                text: "Манчестер Юнайтед",
+                correct: true
+            }, {
+                text: "Арсенал",
+                correct: false
+            }, {
+                text: "Милан",
+                correct: false
+            }]
+        }, {
+            question: "Кто выиграл Золотой мяч в 2021 году?",
+            answers: [{
+                text: "Криштиану Роналду",
+                correct: false
+            }, {
+                text: "Лионель Месси",
+                correct: true
+            }, {
+                text: "Роберт Левандовски",
+                correct: false
+            }, {
+                text: "Кевин Де Брюйне",
+                correct: false
+            }]
+        }, {
+            question: "Какой игрок забил 'Руку Бога' в матче чемпионата мира?",
+            answers: [{
+                text: "Пеле",
+                correct: false
+            }, {
+                text: "Диего Марадона",
+                correct: true
+            }, {
+                text: "Лионель Месси",
+                correct: false
+            }, {
+                text: "Зинедин Зидан",
+                correct: false
+            }]
+        }, {
+            question: "Какой клуб побил рекорд по количеству титулов Лиги чемпионов?",
+            answers: [{
+                text: "Барселона",
+                correct: false
+            }, {
+                text: "Реал Мадрид",
+                correct: true
+            }, {
+                text: "Милан",
+                correct: false
+            }, {
+                text: "Ливерпуль",
+                correct: false
+            }]
+        }, {
+            question: "Кто является лучшим бомбардиром сборной Португалии?",
+            answers: [{
+                text: "Эусебио",
+                correct: false
+            }, {
+                text: "Криштиану Роналду",
+                correct: true
+            }, {
+                text: "Луиш Фигу",
+                correct: false
+            }, {
+                text: "Жозе Торрес",
+                correct: false
+            }]
+        }, {
+            question: "Какой клуб выиграл Премьер-лигу Англии в сезоне 2019/2020?",
+            answers: [{
+                text: "Манчестер Сити",
+                correct: false
+            }, {
+                text: "Ливерпуль",
+                correct: true
+            }, {
+                text: "Челси",
+                correct: false
+            }, {
+                text: "Арсенал",
+                correct: false
+            }]
+        }, {
+            question: "Какой стадион является домашней ареной Барселоны?",
+            answers: [{
+                text: "Сантьяго Бернабеу",
+                correct: false
+            }, {
+                text: "Энфилд",
+                correct: false
+            }, {
+                text: "Камп Ноу",
+                correct: true
+            }, {
+                text: "Олд Траффорд",
+                correct: false
+            }]
+        }, {
+            question: "Кто был главным тренером сборной Франции на чемпионате мира 2018 года?",
+            answers: [{
+                text: "Дидье Дешам",
+                correct: true
+            }, {
+                text: "Зинедин Зидан",
+                correct: false
+            }, {
+                text: "Лоран Блан",
+                correct: false
+            }, {
+                text: "Раймон Доменек",
+                correct: false
+            }]
+        }, {
+            question: "Кто стал лучшим бомбардиром чемпионата мира 2002 года?",
+            answers: [{
+                text: "Роналдо",
+                correct: true
+            }, {
+                text: "Мирослав Клозе",
+                correct: false
+            }, {
+                text: "Тьерри Анри",
+                correct: false
+            }, {
+                text: "Ривалдо",
+                correct: false
+            }]
+        }, {
+            question: "В каком году был основан клуб 'Барселона'?",
+            answers: [{
+                text: "1899",
+                correct: true
+            }, {
+                text: "1902",
+                correct: false
+            }, {
+                text: "1910",
+                correct: false
+            }, {
+                text: "1923",
+                correct: false
+            }]
+        }];
+
+
+        // Singleton 
+        class QuizManager {
+            constructor(questions) {
+                if (QuizManager.instance) return QuizManager.instance;
+                this.questions = questions;
+                this.currentQuestionIndex = 0;
+                this.score = 0;
+                this.observers = [];
+                QuizManager.instance = this;
+            }
+
+            static getInstance(questions) {
+                if (!QuizManager.instance) QuizManager.instance = new QuizManager(questions);
+                return QuizManager.instance;
+            }
+
+            getCurrentQuestion() {
+                return this.questions[this.currentQuestionIndex];
+            }
+
+            nextQuestion() {
+                this.currentQuestionIndex++;
+            }
+
+            addObserver(observer) {
+                this.observers.push(observer);
+            }
+
+            notifyObservers() {
+                this.observers.forEach(observer => observer.update(this.score));
+            }
+
+            updateScore(isCorrect) {
+                if (isCorrect) this.score++;
+                this.notifyObservers();
+            }
+
+            reset() {
+                this.currentQuestionIndex = 0;
+                this.score = 0;
+            }
+
+            isQuizOver() {
+                return this.currentQuestionIndex >= this.questions.length;
+            }
+        }
+
+        // Factory 
+        class QuizFactory {
+            static createQuiz(type) {
+                if (type === 'football') return QuizManager.getInstance(questions);
+                throw new Error('Unknown quiz type');
+            }
+        }
+
+        // Observer 
+        class ScoreObserver {
+            constructor(scoreElement) {
+                this.scoreElement = scoreElement;
+            }
+
+            update(score) {
+                this.scoreElement.textContent = `Score: ${score}`;
+            }
+        }
+
+        // Facade 
+        class QuizFacade {
+            constructor(quizType) {
+                this.quizManager = QuizFactory.createQuiz(quizType);
+            }
+
+            startQuiz() {
+                this.quizManager.reset();
+            }
+
+            answerQuestion(isCorrect) {
+                this.quizManager.updateScore(isCorrect);
+                this.quizManager.nextQuestion();
+            }
+
+            getScore() {
+                return this.quizManager.score;
+            }
+
+            getCurrentQuestion() {
+                return this.quizManager.getCurrentQuestion();
+            }
+
+            isQuizOver() {
+                return this.quizManager.isQuizOver();
+            }
+        }
+
+        // интерфейс
+        const quizFacade = new QuizFacade('football');
+        const scoreObserver = new ScoreObserver(document.getElementById('score'));
+        const quizManager = quizFacade.quizManager;
+        quizManager.addObserver(scoreObserver);
+
+        const quizContainer = document.getElementById('quiz-container');
+        const endScreen = document.getElementById('end-screen');
+        const questionElement = document.getElementById('question');
+        const answersElement = document.getElementById('answers');
+        const nextButton = document.getElementById('next-question');
+        const finalScoreElement = document.getElementById('final-score');
+        const feedbackElement = document.getElementById('feedback');
+
+        function showQuestion() {
+            const currentQuestion = quizFacade.getCurrentQuestion();
+            questionElement.textContent = currentQuestion.question;
+            answersElement.innerHTML = '';
+            nextButton.style.display = 'none';
+
+            currentQuestion.answers.forEach(answer => {
+                const button = document.createElement('button');
+                button.textContent = answer.text;
+                button.onclick = () => {
+                    quizFacade.answerQuestion(answer.correct);
+                    if (quizFacade.isQuizOver()) {
+                        showEndScreen();
+                    } else {
+                        nextButton.style.display = 'inline-block';
+                    }
+                };
+                answersElement.appendChild(button);
+            });
+        }
+
+        function showEndScreen() {
+            quizContainer.style.display = 'none';
+            endScreen.style.display = 'block';
+            const score = quizFacade.getScore();
+            finalScoreElement.textContent = `Ваш результат: ${score} из ${questions.length}`;
+
+            // Оценка 
+            if (score === questions.length) {
+                feedbackElement.textContent = "Отлично! Вы — настоящий знаток футбола!";
+            } else if (score >= questions.length * 0.7) {
+                feedbackElement.textContent = "Хорошо! У вас хорошие знания о футболе!";
+            } else if (score >= questions.length * 0.4) {
+                feedbackElement.textContent = "Неплохо, но есть что улучшить.";
+            } else {
+                feedbackElement.textContent = "Вам стоит подучить футбольные знания!";
+            }
+        }
+
+        nextButton.addEventListener('click', showQuestion);
+
+        document.getElementById('restart-quiz').addEventListener('click', () => {
+            endScreen.style.display = 'none';
+            quizContainer.style.display = 'block';
+            quizFacade.startQuiz();
+            showQuestion();
+        });
+
+        quizFacade.startQuiz();
+        showQuestion();
+    </script>
 </body>
 
 </html>
