@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Germany - More Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        header {
+            animation: slideIn 1.5s ease-out;
+        }
+        
+        .fade-in-section {
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        .fact-details {
+            display: none;
+            overflow: hidden;
+            height: 0;
+            opacity: 0;
+            transition: all 0.5s ease-out;
+        }
+        
+        .fact-details.show {
+            display: block;
+            height: auto;
+            opacity: 1;
+        }
+        
+        .fact-button {
+            background: none;
+            border: none;
+            color: #007bff;
+            text-align: left;
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1rem;
+            text-decoration: underline;
+        }
+        
+        .fact-button:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+
+<body class="bg-light text-dark">
+    <header class="bg-secondary text-white text-center py-4">
+        <h1>Discover Germany</h1>
+        <p>Explore what makes Germany unique</p>
+    </header>
+
+    <nav class="nav justify-content-center my-3">
+        <a class="nav-link active text-secondary" href="index.html">Home</a>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row fade-in-section">
+            <div class="col-md-6">
+                <h2 class="text-secondary">History and Culture</h2>
+                <p>Germany has a deep historical and cultural heritage, from the medieval castles of Bavaria to the modern art scenes of Berlin. It has produced world-renowned composers like Beethoven and Bach, as well as influential philosophers such as
+                    Kant and Nietzsche.</p>
+            </div>
+            <div class="col-md-6">
+                <img src="im/p1.jpg" alt="German Castle" class="img-fluid rounded">
+            </div>
+        </div>
+
+        <div class="row my-5 fade-in-section">
+            <div class="col-md-6">
+                <img src="im/p2.jpg" alt="German City" class="img-fluid rounded">
+            </div>
+            <div class="col-md-6">
+                <h2 class="text-secondary">Science and Innovation</h2>
+                <p>Germany is a global leader in science and technology. It is the birthplace of the automobile and home to cutting-edge research institutions. German engineering is synonymous with quality and precision.</p>
+            </div>
+        </div>
+
+        <div class="text-center my-5 fade-in-section">
+            <h3 class="text-secondary">Quick Facts</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <button class="fact-button" onclick="toggleFactDetails(0)" style="text-decoration: none; color: black;">Capital: Berlin</button>
+                    <p class="fact-details" id="fact-0">Berlin is not only the capital of Germany, but also its largest city and a major cultural and political center.</p>
+                </li>
+                <li class="list-group-item">
+                    <button class="fact-button" onclick="toggleFactDetails(1)" style="text-decoration: none; color: black;">Official Language: German</button>
+                    <p class="fact-details" id="fact-1">German is the most widely spoken language in Germany, and it is also one of the major languages in Europe.</p>
+                </li>
+                <li class="list-group-item">
+                    <button class="fact-button" onclick="toggleFactDetails(2)" style="text-decoration: none; color: black;">Currency: Euro (€)</button>
+                    <p class="fact-details" id="fact-2">Germany adopted the Euro in 2002, replacing the Deutsche Mark, and it is now part of the European Union's monetary system.</p>
+                </li>
+                <li class="list-group-item">
+                    <button class="fact-button" onclick="toggleFactDetails(3)" style="text-decoration: none; color: black; ">Famous for: Oktoberfest, Autobahn, Black Forest</button>
+                    <p class="fact-details" id="fact-3">Germany is known for Oktoberfest (a major beer festival), the Autobahn (famous for stretches with no speed limits), and the scenic Black Forest region.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="bg-secondary text-white text-center py-3">
+        <p>&copy; 2024 Germany Enthusiast</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function toggleFactDetails(index) {
+            var fact = document.getElementById('fact-' + index);
+            if (fact.classList.contains('show')) {
+                fact.classList.remove('show');
+            } else {
+                fact.classList.add('show');
+            }
+        }
+    </script>
+</body>
+
+</html>

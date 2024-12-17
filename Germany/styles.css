@@ -1,0 +1,256 @@
+
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li,
+a {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-image: url(im/main.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.main {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-image: url(im/main.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+header {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 30px;
+    text-align: center;
+    animation: slideIn 1.5s ease-out;
+}
+
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header h1 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    animation: zoomIn 1.5s ease-out;
+}
+
+
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+header p {
+    font-size: 1.2em;
+    font-style: italic;
+    animation: fadeIn 1.5s ease-out;
+}
+
+
+
+nav {
+    text-align: center;
+    margin: 30px 0;
+    animation: fadeInUp 1s ease-out;
+}
+
+
+
+nav a {
+    color: #000;
+    background-color: #fff;
+    text-decoration: none;
+    font-size: 1.1em;
+    margin: 0 15px;
+    padding: 7px 15px;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background: #ff0000;
+    color: #fff;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-out;
+}
+
+
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+nav a {
+    color: #ff0000;
+    text-decoration: none;
+    font-size: 1.1em;
+    margin: 0 15px;
+    padding: 7px 15px;
+    border: 2px solid #ff0000;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+nav a:hover {
+    background: #ff0000;
+    color: #fff;
+    transform: scale(1.05);
+    transition: transform 0.3s ease-out;
+}
+
+
+
+section {
+    background: rgba(0, 0, 0, 0.8);
+    margin: 30px auto;
+    padding: 25px;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1.5s ease-out;
+}
+
+section h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ff0000;
+    padding-bottom: 10px;
+    animation: highlight 2s ease-out infinite alternate;
+}
+
+
+
+@keyframes highlight {
+    0% {
+        color: #fff;
+    }
+    100% {
+        color: #ff0000;
+    }
+}
+
+section h3 {
+    font-size: 1.6em;
+    margin: 20px 0 12px;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+section ul {
+    list-style-type: square;
+    margin-left: 20px;
+}
+
+section ul li {
+    margin: 7px 0;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+section ul li:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+section ul li:nth-child(even) {
+    animation-delay: 0.4s;
+}
+
+
+footer {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 12px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    animation: fadeIn 1.5s ease-out;
+}
+
+footer p {
+    font-size: 1em;
+}
+
+
+
+button {
+    padding: 10px 20px;
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+
+
+body {
+    background: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+header {
+    background: rgba(0, 0, 0, 0.85);
+}
+
+footer {
+    background: rgba(0, 0, 0, 0.85);
+    animation: fadeIn 1.5s ease-in-out;
+}
